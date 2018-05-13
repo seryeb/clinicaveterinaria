@@ -31,9 +31,17 @@ import javax.swing.Action;
 import javax.swing.JTable;
 import javax.swing.JPopupMenu;
 import java.awt.Component;
+import javax.swing.JSeparator;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 public class ClinicaVeterinaria {
 	private JFrame frmClnicaVeterinariaMisif;
+	private JTextField nombreCampo;
+	private JTextField especieCampo;
+	private JTextField alimentacionCampo;
+	private JTextField codigoCampo;
+	private JTextField observacionesCampo;
 	
 	/**
 	 * Launch the application.
@@ -155,9 +163,142 @@ public class ClinicaVeterinaria {
 		pajaros.setLayout(null);
 		
 
+
+		
+
+		
+		JPanel peces = new JPanel();
+		peces.setBounds(293, 0, 291, 307);
+		superior.add(peces);
+		peces.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Peces", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(51, 51, 51)));
+		peces.setLayout(null);
+		
+					
+		JPanel reptiles = new JPanel();
+		reptiles.setLayout(null);
+		reptiles.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Reptiles", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(51, 51, 51)));
+		reptiles.setBounds(584, 0, 291, 307);
+		superior.add(reptiles);
+		
+		JPanel informacion = new JPanel();
+		informacion.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Informaci\u00F3n", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		frmClnicaVeterinariaMisif.getContentPane().add(informacion);
+		informacion.setLayout(null);
+		
+		JLabel nombreEtiqueta = new JLabel("Nombre:");
+		nombreEtiqueta.setFont(new Font("Tahoma", Font.BOLD, 12));
+		nombreEtiqueta.setBounds(24, 41, 55, 28);
+		informacion.add(nombreEtiqueta);
+		
+		nombreCampo = new JTextField();
+		nombreCampo.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		nombreCampo.setBounds(121, 45, 210, 24);
+		informacion.add(nombreCampo);
+		nombreCampo.setColumns(10);
+		
+		JLabel especieEtiqueta = new JLabel("Especie:");
+		especieEtiqueta.setFont(new Font("Tahoma", Font.BOLD, 12));
+		especieEtiqueta.setBounds(24, 80, 55, 28);
+		informacion.add(especieEtiqueta);
+		
+		especieCampo = new JTextField();
+		especieCampo.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		especieCampo.setColumns(10);
+		especieCampo.setBounds(121, 84, 529, 24);
+		informacion.add(especieCampo);
+		
+		JLabel alimentacionEtiqueta = new JLabel("Alimentaci\u00F3n:");
+		alimentacionEtiqueta.setFont(new Font("Tahoma", Font.BOLD, 12));
+		alimentacionEtiqueta.setBounds(24, 119, 87, 28);
+		informacion.add(alimentacionEtiqueta);
+		
+		alimentacionCampo = new JTextField();
+		alimentacionCampo.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		alimentacionCampo.setColumns(10);
+		alimentacionCampo.setBounds(121, 123, 529, 56);
+		informacion.add(alimentacionCampo);
+		
+		JLabel codigoEtiqueta = new JLabel("C\u00F3digo:");
+		codigoEtiqueta.setFont(new Font("Tahoma", Font.BOLD, 12));
+		codigoEtiqueta.setBounds(372, 41, 55, 28);
+		informacion.add(codigoEtiqueta);
+		
+		codigoCampo = new JTextField();
+		codigoCampo.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		codigoCampo.setColumns(10);
+		codigoCampo.setBounds(437, 45, 213, 24);
+		informacion.add(codigoCampo);
+		
+		JLabel observacionesEtiqueta = new JLabel("Observaciones:");
+		observacionesEtiqueta.setFont(new Font("Tahoma", Font.BOLD, 12));
+		observacionesEtiqueta.setBounds(24, 202, 96, 28);
+		informacion.add(observacionesEtiqueta);
+		
+		observacionesCampo = new JTextField();
+		observacionesCampo.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		observacionesCampo.setColumns(10);
+		observacionesCampo.setBounds(121, 202, 529, 86);
+		informacion.add(observacionesCampo);
+		
+		JLabel tipoEtiqueta = new JLabel("Tipo:");
+		tipoEtiqueta.setFont(new Font("Tahoma", Font.BOLD, 12));
+		tipoEtiqueta.setBounds(674, 41, 55, 28);
+		informacion.add(tipoEtiqueta);
+		
+		JRadioButton pajaroRadioBoton = new JRadioButton("P\u00E1jaro");
+		pajaroRadioBoton.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		pajaroRadioBoton.setBounds(731, 45, 109, 23);
+		informacion.add(pajaroRadioBoton);
+		
+		JRadioButton pezRadioBoton = new JRadioButton("Pez");
+		pezRadioBoton.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		pezRadioBoton.setBounds(731, 71, 109, 23);
+		informacion.add(pezRadioBoton);
+		
+		JRadioButton reptilRadioBoton = new JRadioButton("Reptil");
+		reptilRadioBoton.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		reptilRadioBoton.setBounds(731, 96, 109, 23);
+		informacion.add(reptilRadioBoton);
+		
+		// Botón de grupo para el animal
+		ButtonGroup animalBG = new ButtonGroup();
+		animalBG.add(pajaroRadioBoton);
+		animalBG.add(pezRadioBoton);
+		animalBG.add(reptilRadioBoton);
+		
+		JSeparator separator = new JSeparator();
+		separator.setBounds(674, 136, 142, 2);
+		informacion.add(separator);
+		
+		JLabel generoEtiqueta = new JLabel("G\u00E9nero:");
+		generoEtiqueta.setFont(new Font("Tahoma", Font.BOLD, 12));
+		generoEtiqueta.setBounds(674, 151, 55, 28);
+		informacion.add(generoEtiqueta);
+		
+		JRadioButton machoRadioBoton = new JRadioButton("Macho");
+		machoRadioBoton.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		machoRadioBoton.setBounds(731, 151, 109, 23);
+		informacion.add(machoRadioBoton);
+		
+		JRadioButton hembraRadioBoton = new JRadioButton("Hembra");
+		hembraRadioBoton.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		hembraRadioBoton.setBounds(731, 177, 109, 23);
+		informacion.add(hembraRadioBoton);
+		
+		// Botón de grupo para el género
+		ButtonGroup generoBG = new ButtonGroup();
+		generoBG.add(machoRadioBoton);
+		generoBG.add(hembraRadioBoton);
+				
+		JButton btnGuardarCambios = new JButton("Guardar cambios");
+		btnGuardarCambios.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnGuardarCambios.setBounds(674, 249, 142, 39);
+		informacion.add(btnGuardarCambios);
+		
+		// Lista para objetos Pajaro
 		PajaroListModel pajaro_model = new PajaroListModel();
 		
-		
+		// Botón añadir pájaro
 		JButton anadirPajaroBoton = new JButton("+");
 		anadirPajaroBoton.addMouseListener(new MouseAdapter() {
 			@Override
@@ -167,7 +308,8 @@ public class ClinicaVeterinaria {
 				JTextField especieC = new JTextField();
 				JTextField alimentacionC = new JTextField();
 				JTextField observacionesC = new JTextField();
-				JTextField generoC = new JTextField();
+				JComboBox generoC = new JComboBox();
+				generoC.setModel(new DefaultComboBoxModel(new String[] {"Macho", "Hembra"}));
 				
 				Object[] message = {
 				    "Nombre:", nombreC,
@@ -180,25 +322,45 @@ public class ClinicaVeterinaria {
 				int option = JOptionPane.showConfirmDialog(frmClnicaVeterinariaMisif, message, "Indique los valores del pájaro", JOptionPane.OK_CANCEL_OPTION);
 				if (option == JOptionPane.OK_OPTION)
 				{
-					Pajaro p = new Pajaro(nombreC.getText(), codigoC.getText(), especieC.getText(), alimentacionC.getText(), observacionesC.getText(),generoC.getText());
+					Pajaro p = new Pajaro(nombreC.getText(), codigoC.getText(), especieC.getText(), alimentacionC.getText(), observacionesC.getText(),(String)generoC.getSelectedItem());
 					pajaro_model.addPajaro(p);
 					
 				}
 			}
 		});
-		anadirPajaroBoton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
+		
 		anadirPajaroBoton.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		anadirPajaroBoton.setBounds(105, 25, 49, 41);
+		anadirPajaroBoton.setBounds(158, 25, 49, 41);
 		pajaros.add(anadirPajaroBoton);
 		
+		// Lista de los pájaros
 		JList listaPajaros = new JList();
+		// Seleccionar un pájaro
+		listaPajaros.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int selection = listaPajaros.getSelectedIndex();
+				if (selection!=-1) {
+				     Pajaro p = pajaro_model.getPajaro(selection);
+				     nombreCampo.setText(p.getNombre());
+				     codigoCampo.setText(p.getCodigo());
+				     especieCampo.setText(p.getEspecie());
+				     alimentacionCampo.setText(p.getAlimentacion());
+				     observacionesCampo.setText(p.getObservaciones());
+				     if (p.getGenero()== "Macho") {
+				    	 machoRadioBoton.setSelected(true);
+				     } else {
+				    	 hembraRadioBoton.setSelected(true);
+				     }
+				     pajaroRadioBoton.setSelected(true);
+				}
+			}
+		});
 		listaPajaros.setBounds(32, 86, 234, 199);
 		pajaros.add(listaPajaros);
 		listaPajaros.setModel(pajaro_model);
 		
+		// Botón eliminar pájaros
 		JButton eliminarPajaroBoton = new JButton("-");
 		eliminarPajaroBoton.addMouseListener(new MouseAdapter() {
 			@Override
@@ -214,31 +376,8 @@ public class ClinicaVeterinaria {
 			}
 		});
 		eliminarPajaroBoton.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		eliminarPajaroBoton.setBounds(164, 25, 49, 41);
+		eliminarPajaroBoton.setBounds(217, 25, 49, 41);
 		pajaros.add(eliminarPajaroBoton);
-		
-
-		
-		JPanel peces = new JPanel();
-		peces.setBounds(293, 0, 291, 307);
-		superior.add(peces);
-		peces.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Peces", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(51, 51, 51)));
-		peces.setLayout(null);
-				
-		JPanel reptiles = new JPanel();
-		reptiles.setLayout(null);
-		reptiles.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Reptiles", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(51, 51, 51)));
-		reptiles.setBounds(584, 0, 291, 307);
-		superior.add(reptiles);
-		
-		JPanel informacion = new JPanel();
-		informacion.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Informaci\u00F3n", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		frmClnicaVeterinariaMisif.getContentPane().add(informacion);
-		informacion.setLayout(null);
-		
-		JLabel label = new JLabel("Nombre:");
-		label.setBounds(29, 41, 63, 28);
-		informacion.add(label);
 	}
 	private class SwingAction extends AbstractAction {
 		public SwingAction() {
