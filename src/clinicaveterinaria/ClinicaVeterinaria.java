@@ -34,6 +34,9 @@ import java.awt.Component;
 import javax.swing.JSeparator;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.SwingConstants;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class ClinicaVeterinaria {
 	private JFrame frmClnicaVeterinariaMisif;
@@ -157,31 +160,56 @@ public class ClinicaVeterinaria {
 		superior.setLayout(null);
 		
 		JPanel pajaros = new JPanel();
-		pajaros.setBounds(0, 0, 291, 307);
+		pajaros.setBounds(0, 0, 291, 323);
 		superior.add(pajaros);
-		pajaros.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "P\u00E1jaros", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(51, 51, 51)));
+		pajaros.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(51, 51, 51)));
 		pajaros.setLayout(null);
-		
-
-
-		
-
-		
+				
 		JPanel peces = new JPanel();
-		peces.setBounds(293, 0, 291, 307);
+		peces.setBounds(290, 0, 291, 323);
 		superior.add(peces);
-		peces.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Peces", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(51, 51, 51)));
+		peces.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(51, 51, 51)));
 		peces.setLayout(null);
+		
+		JLabel pecesTituloEtiqueta = new JLabel("Peces");
+		pecesTituloEtiqueta.setFont(new Font("Tahoma", Font.BOLD, 19));
+		pecesTituloEtiqueta.setBounds(10, 25, 98, 41);
+		peces.add(pecesTituloEtiqueta);
+		
+		JButton anadirPecesBoton = new JButton("+");
+		anadirPecesBoton.setFont(new Font("Tahoma", Font.BOLD, 19));
+		anadirPecesBoton.setBounds(110, 11, 65, 64);
+		peces.add(anadirPecesBoton);
+		
+		JButton eliminarPecesBoton = new JButton("-");
+		eliminarPecesBoton.setFont(new Font("Tahoma", Font.BOLD, 19));
+		eliminarPecesBoton.setBounds(183, 11, 65, 64);
+		peces.add(eliminarPecesBoton);
 		
 					
 		JPanel reptiles = new JPanel();
 		reptiles.setLayout(null);
-		reptiles.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Reptiles", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(51, 51, 51)));
-		reptiles.setBounds(584, 0, 291, 307);
+		reptiles.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(51, 51, 51)));
+		reptiles.setBounds(578, 0, 291, 323);
 		superior.add(reptiles);
 		
+		JLabel reptilesTituloEtiqueta = new JLabel("Reptiles");
+		reptilesTituloEtiqueta.setFont(new Font("Tahoma", Font.BOLD, 19));
+		reptilesTituloEtiqueta.setBounds(10, 25, 98, 41);
+		reptiles.add(reptilesTituloEtiqueta);
+		
+		JButton anadirReptilesBoton = new JButton("+");
+		anadirReptilesBoton.setFont(new Font("Tahoma", Font.BOLD, 19));
+		anadirReptilesBoton.setBounds(110, 11, 65, 64);
+		reptiles.add(anadirReptilesBoton);
+		
+		JButton eliminarReptilesBoton = new JButton("-");
+		eliminarReptilesBoton.setFont(new Font("Tahoma", Font.BOLD, 19));
+		eliminarReptilesBoton.setBounds(183, 11, 65, 64);
+		reptiles.add(eliminarReptilesBoton);
+		
 		JPanel informacion = new JPanel();
-		informacion.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Informaci\u00F3n", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		informacion.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		frmClnicaVeterinariaMisif.getContentPane().add(informacion);
 		informacion.setLayout(null);
 		
@@ -213,6 +241,7 @@ public class ClinicaVeterinaria {
 		informacion.add(alimentacionEtiqueta);
 		
 		alimentacionCampo = new JTextField();
+		alimentacionCampo.setHorizontalAlignment(SwingConstants.LEFT);
 		alimentacionCampo.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		alimentacionCampo.setColumns(10);
 		alimentacionCampo.setBounds(121, 123, 529, 56);
@@ -246,16 +275,19 @@ public class ClinicaVeterinaria {
 		informacion.add(tipoEtiqueta);
 		
 		JRadioButton pajaroRadioBoton = new JRadioButton("P\u00E1jaro");
+		pajaroRadioBoton.setEnabled(false);
 		pajaroRadioBoton.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		pajaroRadioBoton.setBounds(731, 45, 109, 23);
 		informacion.add(pajaroRadioBoton);
 		
 		JRadioButton pezRadioBoton = new JRadioButton("Pez");
+		pezRadioBoton.setEnabled(false);
 		pezRadioBoton.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		pezRadioBoton.setBounds(731, 71, 109, 23);
 		informacion.add(pezRadioBoton);
 		
 		JRadioButton reptilRadioBoton = new JRadioButton("Reptil");
+		reptilRadioBoton.setEnabled(false);
 		reptilRadioBoton.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		reptilRadioBoton.setBounds(731, 96, 109, 23);
 		informacion.add(reptilRadioBoton);
@@ -290,10 +322,16 @@ public class ClinicaVeterinaria {
 		generoBG.add(machoRadioBoton);
 		generoBG.add(hembraRadioBoton);
 				
-		JButton btnGuardarCambios = new JButton("Guardar cambios");
-		btnGuardarCambios.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnGuardarCambios.setBounds(674, 249, 142, 39);
-		informacion.add(btnGuardarCambios);
+		JButton GuardarCambiosBoton = new JButton("Guardar cambios");
+		GuardarCambiosBoton.setEnabled(false);
+		GuardarCambiosBoton.setFont(new Font("Tahoma", Font.BOLD, 12));
+		GuardarCambiosBoton.setBounds(674, 249, 142, 39);
+		informacion.add(GuardarCambiosBoton);
+		
+		JLabel informacionTituloEtiqueta = new JLabel("Informaci\u00F3n");
+		informacionTituloEtiqueta.setFont(new Font("Tahoma", Font.BOLD, 19));
+		informacionTituloEtiqueta.setBounds(24, -7, 142, 41);
+		informacion.add(informacionTituloEtiqueta);
 		
 		// Lista para objetos Pajaro
 		PajaroListModel pajaro_model = new PajaroListModel();
@@ -329,8 +367,8 @@ public class ClinicaVeterinaria {
 			}
 		});
 		
-		anadirPajaroBoton.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		anadirPajaroBoton.setBounds(158, 25, 49, 41);
+		anadirPajaroBoton.setFont(new Font("Tahoma", Font.BOLD, 19));
+		anadirPajaroBoton.setBounds(128, 11, 65, 64);
 		pajaros.add(anadirPajaroBoton);
 		
 		// Lista de los pájaros
@@ -347,7 +385,7 @@ public class ClinicaVeterinaria {
 				     especieCampo.setText(p.getEspecie());
 				     alimentacionCampo.setText(p.getAlimentacion());
 				     observacionesCampo.setText(p.getObservaciones());
-				     if (p.getGenero()== "Macho") {
+				     if (p.getGenero() == "Macho") {
 				    	 machoRadioBoton.setSelected(true);
 				     } else {
 				    	 hembraRadioBoton.setSelected(true);
@@ -356,7 +394,7 @@ public class ClinicaVeterinaria {
 				}
 			}
 		});
-		listaPajaros.setBounds(32, 86, 234, 199);
+		listaPajaros.setBounds(28, 86, 238, 199);
 		pajaros.add(listaPajaros);
 		listaPajaros.setModel(pajaro_model);
 		
@@ -375,9 +413,115 @@ public class ClinicaVeterinaria {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		eliminarPajaroBoton.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		eliminarPajaroBoton.setBounds(217, 25, 49, 41);
+		eliminarPajaroBoton.setFont(new Font("Tahoma", Font.BOLD, 19));
+		eliminarPajaroBoton.setBounds(201, 11, 65, 64);
 		pajaros.add(eliminarPajaroBoton);
+		
+		JLabel pajarosTituloEtiqueta = new JLabel("P\u00E1jaros");
+		pajarosTituloEtiqueta.setFont(new Font("Tahoma", Font.BOLD, 19));
+		pajarosTituloEtiqueta.setBounds(28, 25, 98, 41);
+		pajaros.add(pajarosTituloEtiqueta);
+		
+		// Listeners para saber si modificamos un animal en Informacion (Keypress/MouseClick)
+		nombreCampo.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent arg0) {
+				GuardarCambiosBoton.setEnabled(true);;
+			}
+		});
+		codigoCampo.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent arg0) {
+				GuardarCambiosBoton.setEnabled(true);;
+			}
+		});
+		especieCampo.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent arg0) {
+				GuardarCambiosBoton.setEnabled(true);;
+			}
+		});
+		alimentacionCampo.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent arg0) {
+				GuardarCambiosBoton.setEnabled(true);;
+			}
+		});
+		observacionesCampo.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent arg0) {
+				GuardarCambiosBoton.setEnabled(true);;
+			}
+		});
+		machoRadioBoton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				GuardarCambiosBoton.setEnabled(true);;
+			}
+		});
+		hembraRadioBoton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				GuardarCambiosBoton.setEnabled(true);;
+			}
+		});
+//		pajaroRadioBoton.addMouseListener(new MouseAdapter() {
+//			@Override
+//			public void mouseClicked(MouseEvent e) {
+//				GuardarCambiosBoton.setEnabled(true);;
+//			}
+//		});
+//		pezRadioBoton.addMouseListener(new MouseAdapter() {
+//			@Override
+//			public void mouseClicked(MouseEvent e) {
+//				GuardarCambiosBoton.setEnabled(true);;
+//			}
+//		});
+//		reptilRadioBoton.addMouseListener(new MouseAdapter() {
+//			@Override
+//			public void mouseClicked(MouseEvent e) {
+//				GuardarCambiosBoton.setEnabled(true);;
+//			}
+//		});
+		
+		// Acción del botón Guardar Cambios
+		GuardarCambiosBoton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int selectionPajaros = listaPajaros.getSelectedIndex();
+				//int selectionPeces = listaPeces.getSelectedIndex();
+				//int selectionReptiles = listaReptiles.getSelectedIndex();
+				if (selectionPajaros!=-1) {
+					Pajaro p = pajaro_model.getPajaro(selectionPajaros);
+				//}else if(selectionPeces!=-1){
+					//Pez p = pez_model.getPez(selectionPez);
+				//}else if(selectionReptiles!=-1){
+					//Reptil p = reptil_model.getReptil(selectionReptil);
+					if (nombreCampo.getText() != p.getNombre()) {
+						p.setNombre(nombreCampo.getText());
+					}
+					if (codigoCampo.getText() != p.getCodigo()) {
+						p.setCodigo(codigoCampo.getText());
+					}
+					if (especieCampo.getText() != p.getEspecie()) {
+						p.setEspecie(especieCampo.getText());
+					}
+					if (alimentacionCampo.getText() != p.getAlimentacion()) {
+						p.setAlimentacion(alimentacionCampo.getText());
+					}
+					if (observacionesCampo.getText() != p.getObservaciones()) {
+						p.setObservaciones(observacionesCampo.getText());
+					}
+					if (machoRadioBoton.isSelected() && p.getGenero() == "Hembra") {
+						p.setGenero("Macho");
+					}
+					if (hembraRadioBoton.isSelected() && p.getGenero() == "Macho") {
+						p.setGenero("Hembra");
+					}
+				}
+				GuardarCambiosBoton.setEnabled(false);
+			}
+		});
+		
 	}
 	private class SwingAction extends AbstractAction {
 		public SwingAction() {
