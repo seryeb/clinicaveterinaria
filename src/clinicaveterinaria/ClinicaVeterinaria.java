@@ -147,6 +147,18 @@ public class ClinicaVeterinaria {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		// Carga de datos de ejemplo de animales
+		Pajaro paj1 = new Pajaro("Tucán Zoo", "PA0001", "Ramphastidae", "Basada en semillas", "Pertenece al Zoo. Prohibida su venta","Macho");
+		Pajaro paj2 = new Pajaro("Canario Doméstico 1", "PA0002", "Serinus canaria domestica", "Basada en semillas", "Criado en tienda","Macho");
+		Pajaro paj3 = new Pajaro("Loro Peron", "PA0003", "Psitacoideos", "Basada en semillas", "Criada en tienda","Hembra");
+		Pez pez1 = new Pez("Arowana Crimson Red", "PE0001", "Scleropages Formosus", "Pienso específico para peces ornamentales", "Criada en tienda","Hembra");
+		Pez pez2 = new Pez("Barbo Arcoiris", "PE0002", "Notropis chrosomus", "Pienso específico para peces ornamentales", "Criada en tienda","Macho");
+		Pez pez3 = new Pez("LIMIA ALETA NEGRA", "PE0003", "Limia perugiae", "Pienso específico para peces ornamentales", "Adquirida proveedor","Hembra");
+		Reptil rep1 = new Reptil("CAMALEON ALFOMBRA", "RE0001", "chamaeleo Lateralis", "Insectos", "Adquirida proveedor","Hembra");
+		Reptil rep2 = new Reptil("Tortuga Alligator", "RE0002", "Macroclemys temmicki", "Insectos", "Criada en tienda","Hembra");
+		Reptil rep3 = new Reptil("Tortuga Alligator", "RE0003", "Macroclemys temmicki", "Insectos", "Criada en tienda","Macho");
+		
+		// Definición JFrame
 		frmClnicaVeterinariaMisif = new JFrame();
 		frmClnicaVeterinariaMisif.setTitle("Tienda de Mascotas Misif\u00FA");
 		frmClnicaVeterinariaMisif.setResizable(false);
@@ -176,16 +188,6 @@ public class ClinicaVeterinaria {
 		pecesTituloEtiqueta.setBounds(10, 25, 98, 41);
 		peces.add(pecesTituloEtiqueta);
 		
-		JButton anadirPecesBoton = new JButton("+");
-		anadirPecesBoton.setFont(new Font("Tahoma", Font.BOLD, 19));
-		anadirPecesBoton.setBounds(110, 11, 65, 64);
-		peces.add(anadirPecesBoton);
-		
-		JButton eliminarPecesBoton = new JButton("-");
-		eliminarPecesBoton.setFont(new Font("Tahoma", Font.BOLD, 19));
-		eliminarPecesBoton.setBounds(183, 11, 65, 64);
-		peces.add(eliminarPecesBoton);
-		
 					
 		JPanel reptiles = new JPanel();
 		reptiles.setLayout(null);
@@ -197,16 +199,6 @@ public class ClinicaVeterinaria {
 		reptilesTituloEtiqueta.setFont(new Font("Tahoma", Font.BOLD, 19));
 		reptilesTituloEtiqueta.setBounds(10, 25, 98, 41);
 		reptiles.add(reptilesTituloEtiqueta);
-		
-		JButton anadirReptilesBoton = new JButton("+");
-		anadirReptilesBoton.setFont(new Font("Tahoma", Font.BOLD, 19));
-		anadirReptilesBoton.setBounds(110, 11, 65, 64);
-		reptiles.add(anadirReptilesBoton);
-		
-		JButton eliminarReptilesBoton = new JButton("-");
-		eliminarReptilesBoton.setFont(new Font("Tahoma", Font.BOLD, 19));
-		eliminarReptilesBoton.setBounds(183, 11, 65, 64);
-		reptiles.add(eliminarReptilesBoton);
 		
 		JPanel informacion = new JPanel();
 		informacion.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
@@ -422,6 +414,184 @@ public class ClinicaVeterinaria {
 		pajarosTituloEtiqueta.setBounds(28, 25, 98, 41);
 		pajaros.add(pajarosTituloEtiqueta);
 		
+		// Lista para objetos Pez
+		PezListModel pez_model = new PezListModel();
+		// Botón añadir Pez
+		JButton anadirPezBoton = new JButton("+");
+		anadirPezBoton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				JTextField nombreC = new JTextField();
+				JTextField codigoC = new JTextField();
+				JTextField especieC = new JTextField();
+				JTextField alimentacionC = new JTextField();
+				JTextField observacionesC = new JTextField();
+				JComboBox generoC = new JComboBox();
+				generoC.setModel(new DefaultComboBoxModel(new String[] {"Macho", "Hembra"}));
+				
+				Object[] message = {
+				    "Nombre:", nombreC,
+				    "Código:", codigoC,
+				    "Especie:", especieC,
+				    "Alimentación:", alimentacionC,
+				    "Observaciones:", observacionesC,
+				    "Género:", generoC,
+				};
+				int option = JOptionPane.showConfirmDialog(frmClnicaVeterinariaMisif, message, "Indique los valores del pez", JOptionPane.OK_CANCEL_OPTION);
+				if (option == JOptionPane.OK_OPTION)
+				{
+					Pez p = new Pez(nombreC.getText(), codigoC.getText(), especieC.getText(), alimentacionC.getText(), observacionesC.getText(),(String)generoC.getSelectedItem());
+					pez_model.addPez(p);
+					
+				}
+			}
+		});
+		
+		anadirPezBoton.setFont(new Font("Tahoma", Font.BOLD, 19));
+		anadirPezBoton.setBounds(128, 11, 65, 64);
+		peces.add(anadirPezBoton);
+		
+		// Lista de los peces
+		JList listaPeces = new JList();
+		// Seleccionar un pez
+		listaPeces.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int selection = listaPeces.getSelectedIndex();
+				if (selection!=-1) {
+				     Pez p = pez_model.getPez(selection);
+				     nombreCampo.setText(p.getNombre());
+				     codigoCampo.setText(p.getCodigo());
+				     especieCampo.setText(p.getEspecie());
+				     alimentacionCampo.setText(p.getAlimentacion());
+				     observacionesCampo.setText(p.getObservaciones());
+				     if (p.getGenero() == "Macho") {
+				    	 machoRadioBoton.setSelected(true);
+				     } else {
+				    	 hembraRadioBoton.setSelected(true);
+				     }
+				     pezRadioBoton.setSelected(true);
+				}
+			}
+		});
+		listaPeces.setBounds(28, 86, 238, 199);
+		peces.add(listaPeces);
+		listaPeces.setModel(pez_model);
+		
+		// Botón eliminar peces
+		JButton eliminarPezBoton = new JButton("-");
+		eliminarPezBoton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				int selection = listaPeces.getSelectedIndex();
+				if (selection!=-1) {
+				   pez_model.eliminarPez(selection);
+				}
+			}
+		});
+		eliminarPezBoton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		eliminarPezBoton.setFont(new Font("Tahoma", Font.BOLD, 19));
+		eliminarPezBoton.setBounds(201, 11, 65, 64);
+		peces.add(eliminarPezBoton);
+		
+		// Lista para objetos Reptil
+		ReptilListModel reptil_model = new ReptilListModel();
+		// Botón añadir Reptil
+		JButton anadirReptilBoton = new JButton("+");
+		anadirReptilBoton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				JTextField nombreC = new JTextField();
+				JTextField codigoC = new JTextField();
+				JTextField especieC = new JTextField();
+				JTextField alimentacionC = new JTextField();
+				JTextField observacionesC = new JTextField();
+				JComboBox generoC = new JComboBox();
+				generoC.setModel(new DefaultComboBoxModel(new String[] {"Macho", "Hembra"}));
+				
+				Object[] message = {
+				    "Nombre:", nombreC,
+				    "Código:", codigoC,
+				    "Especie:", especieC,
+				    "Alimentación:", alimentacionC,
+				    "Observaciones:", observacionesC,
+				    "Género:", generoC,
+				};
+				int option = JOptionPane.showConfirmDialog(frmClnicaVeterinariaMisif, message, "Indique los valores del reptil", JOptionPane.OK_CANCEL_OPTION);
+				if (option == JOptionPane.OK_OPTION)
+				{
+					Reptil p = new Reptil(nombreC.getText(), codigoC.getText(), especieC.getText(), alimentacionC.getText(), observacionesC.getText(),(String)generoC.getSelectedItem());
+					reptil_model.addReptil(p);
+					
+				}
+			}
+		});
+		
+		anadirReptilBoton.setFont(new Font("Tahoma", Font.BOLD, 19));
+		anadirReptilBoton.setBounds(128, 11, 65, 64);
+		reptiles.add(anadirReptilBoton);
+		
+		// Lista de los reptiles
+		JList listaReptiles = new JList();
+		// Seleccionar un reptil
+		listaReptiles.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int selection = listaReptiles.getSelectedIndex();
+				if (selection!=-1) {
+				     Reptil p = reptil_model.getReptil(selection);
+				     nombreCampo.setText(p.getNombre());
+				     codigoCampo.setText(p.getCodigo());
+				     especieCampo.setText(p.getEspecie());
+				     alimentacionCampo.setText(p.getAlimentacion());
+				     observacionesCampo.setText(p.getObservaciones());
+				     if (p.getGenero() == "Macho") {
+				    	 machoRadioBoton.setSelected(true);
+				     } else {
+				    	 hembraRadioBoton.setSelected(true);
+				     }
+				     reptilRadioBoton.setSelected(true);
+				}
+			}
+		});
+		listaReptiles.setBounds(28, 86, 238, 199);
+		reptiles.add(listaReptiles);
+		listaReptiles.setModel(reptil_model);
+		
+		// Botón eliminar reptiles
+		JButton eliminarReptilBoton = new JButton("-");
+		eliminarReptilBoton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				int selection = listaReptiles.getSelectedIndex();
+				if (selection!=-1) {
+				   reptil_model.eliminarReptil(selection);
+				}
+			}
+		});
+		eliminarReptilBoton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		eliminarReptilBoton.setFont(new Font("Tahoma", Font.BOLD, 19));
+		eliminarReptilBoton.setBounds(201, 11, 65, 64);
+		reptiles.add(eliminarReptilBoton);
+
+		
+		// Los anhadimos a las listas
+		pajaro_model.addPajaro(paj1);
+		pajaro_model.addPajaro(paj2);
+		pajaro_model.addPajaro(paj3);
+		pez_model.addPez(pez1);
+		pez_model.addPez(pez2);
+		pez_model.addPez(pez3);
+		reptil_model.addReptil(rep1);
+		reptil_model.addReptil(rep2);
+		reptil_model.addReptil(rep3);
+		
 		// Listeners para saber si modificamos un animal en Informacion (Keypress/MouseClick)
 		nombreCampo.addKeyListener(new KeyAdapter() {
 			@Override
@@ -465,37 +635,24 @@ public class ClinicaVeterinaria {
 				GuardarCambiosBoton.setEnabled(true);;
 			}
 		});
-//		pajaroRadioBoton.addMouseListener(new MouseAdapter() {
-//			@Override
-//			public void mouseClicked(MouseEvent e) {
-//				GuardarCambiosBoton.setEnabled(true);;
-//			}
-//		});
-//		pezRadioBoton.addMouseListener(new MouseAdapter() {
-//			@Override
-//			public void mouseClicked(MouseEvent e) {
-//				GuardarCambiosBoton.setEnabled(true);;
-//			}
-//		});
-//		reptilRadioBoton.addMouseListener(new MouseAdapter() {
-//			@Override
-//			public void mouseClicked(MouseEvent e) {
-//				GuardarCambiosBoton.setEnabled(true);;
-//			}
-//		});
-		
+	
 		// Acción del botón Guardar Cambios
 		GuardarCambiosBoton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int selectionPajaros = listaPajaros.getSelectedIndex();
-				//int selectionPeces = listaPeces.getSelectedIndex();
-				//int selectionReptiles = listaReptiles.getSelectedIndex();
-				if (selectionPajaros!=-1) {
-					Pajaro p = pajaro_model.getPajaro(selectionPajaros);
-				//}else if(selectionPeces!=-1){
-					//Pez p = pez_model.getPez(selectionPez);
-				//}else if(selectionReptiles!=-1){
-					//Reptil p = reptil_model.getReptil(selectionReptil);
+				int selectionPeces = listaPeces.getSelectedIndex();
+				int selectionReptiles = listaReptiles.getSelectedIndex();
+				Animal p = new Animal(null, null, null, null, null, null);
+				if (pajaroRadioBoton.isSelected()) {
+					Pajaro p1 = pajaro_model.getPajaro(selectionPajaros);
+					p=p1;
+				}else if(pezRadioBoton.isSelected()){
+					Pez p2 = pez_model.getPez(selectionPeces);
+					p=p2;
+				}else {
+					Reptil p3 = reptil_model.getReptil(selectionReptiles);
+					p=p3;					
+				}
 					if (nombreCampo.getText() != p.getNombre()) {
 						p.setNombre(nombreCampo.getText());
 					}
@@ -517,7 +674,6 @@ public class ClinicaVeterinaria {
 					if (hembraRadioBoton.isSelected() && p.getGenero() == "Macho") {
 						p.setGenero("Hembra");
 					}
-				}
 				GuardarCambiosBoton.setEnabled(false);
 			}
 		});
